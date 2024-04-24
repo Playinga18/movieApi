@@ -1,16 +1,17 @@
 const expressRouter = require('express').Router(),
-    moviesController = require('../../controllers/movies');
+    moviesController = require('../../controllers/movies'),
+    JWTGuard = require('../../config/passport');
 
 module.exports = (app) => {
-    app.get('/movies', moviesController.getAll)
-    expressRouter.get('/movies', moviesController.getAll)
+    app.get('/movies', JWTGuard.checkIsAuth, moviesController.getAll)
+    expressRouter.get('/movies',JWTGuard.checkIsAuth, moviesController.getAll)
     app.use('/api/v1', expressRouter)
 
     // Créer un nouveau film
-    app.post('/movies', moviesController.create);
+    app.post('/movies', JWTGuard.checkIsAuth, moviesController.create);
 
     // Récupérer un film par ID
-    app.get('/movies/:id', moviesController.getById);
+    app.get('/movies/:id', JWTGuard.checkIsAuth, moviesController.getById);
 
     // Mettre à jour un film par ID
     app.put('/movies/:id', moviesController.update);

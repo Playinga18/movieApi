@@ -1,4 +1,5 @@
 const Movie = require('../../models/movies'); // Importez votre modèle Movies
+const mongoose = require('mongoose');
 
 /**
  * @description Récupérer tous les films

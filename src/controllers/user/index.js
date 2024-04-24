@@ -22,13 +22,11 @@ exports.getAll = async (req, res) => {
 
 exports.create = async (req, res) => {
     try {
-        const { username, email, firstname, lastname, password } = req.body
+        const { name, email, password } = req.body
         const user = await userModel.create({
-            username,
             email,
             password,
-            firstname,
-            lastname
+            name
         })
         return !user
             ?

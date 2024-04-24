@@ -6,8 +6,8 @@ module.exports = (app) => {
     // app.get('/users', userController.getAll)
     expressRouter.get('/users', userController.getAll)
     expressRouter.get('/user/:id', JWTGuard.checkIsAuth, userController.getById)
-    expressRouter.post('/user', userController.create)
-    expressRouter.patch('/user/:id', userController.update)
-    expressRouter.delete('/user/:id', userController.delete)
+    expressRouter.post('/user', JWTGuard.checkIsAuth, userController.create)
+    expressRouter.patch('/user/:id', JWTGuard.checkIsAuth, userController.update)
+    expressRouter.delete('/user/:id', JWTGuard.checkIsAuth, userController.delete)
     app.use('/api/v1', expressRouter)
 }
