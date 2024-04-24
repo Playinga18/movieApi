@@ -27,9 +27,6 @@ passport.use(passportConfig.jwtStrategy);
 app.get('/', (req, res) => {
     return res.status(200).send('HELLO WORLD')
 })
-app.get('/test', (req, res) => {
-    return res.status(200).send('THIS IS A TEST')
-})
 app.use((req, res) => {
     return res.status(404).send('404 NOT FOUND')
 })

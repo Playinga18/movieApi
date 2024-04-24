@@ -45,6 +45,7 @@ exports.create = async (req, res) => {
 exports.getById = async (req, res) => {
     try {
         const { id } = req.params;
+        id = new mongoose.Types.ObjectId(id);
         const movie = await Movie.findById(id).exec();
         return !movie
             ? res.status(400).json({ statusCode: 400, message: 'ERROR in getby id' })

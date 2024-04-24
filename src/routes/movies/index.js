@@ -14,10 +14,10 @@ module.exports = (app) => {
     app.get('/movies/:id', JWTGuard.checkIsAuth, moviesController.getById);
 
     // Mettre à jour un film par ID
-    app.put('/movies/:id', moviesController.update);
+    app.put('/movies/:id', JWTGuard.checkIsAuth, moviesController.update);
 
     // Supprimer un film par ID
-    app.delete('/movies/:id', moviesController.delete);
+    app.delete('/movies/:id', JWTGuard.checkIsAuth, moviesController.delete);
 }
 
 
